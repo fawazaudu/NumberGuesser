@@ -21,15 +21,24 @@ def choose_difficulty():
     elif choice.lower() == "hard":
         return HARD_ATTEMPTS
 
-print("Welcome to the Number Guessing Game""\nI am thinking of a number between 1 and 100""\nWhat is the number?")
-number=randint(1,100)
+def play_game():
+ print("Welcome to the Number Guessing Game""\nI am thinking of a number between 1 and 100""\nWhat is the number?")
+ number=randint(1,100)
 
 
-attempts=choose_difficulty()
-print(f"You have {attempts} attempts to guess the number")
+ attempts=choose_difficulty()
 
-guess=0
-while guess != number:
-    guess= int(input("Guess the number:"))
-    check_answer(guess, number, attempts)
 
+ guess=0
+ while guess != number:
+     print(f"You have {attempts} attempts to guess the number")
+     guess= int(input("Guess the number:"))
+     attempts=check_answer(guess, number, attempts)
+
+     if attempts==0:
+         print("Sorry, you ran out of guesses")
+         return
+
+
+
+play_game()

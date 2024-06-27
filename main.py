@@ -4,11 +4,14 @@ from random import randint
 EASY_ATTEMPTS=10
 HARD_ATTEMPTS=5
 
-def check_answer(guess, number):
+def check_answer(guess, number, attempts):
     if guess > number:
         print("Your guess is too high")
+        return attempts-1
     elif guess < number:
         print("Your guess is too low")
+        return attempts-1
+
     else: print("Congratulations! You guessed correctly")
 
 def choose_difficulty():
@@ -25,5 +28,8 @@ number=randint(1,100)
 attempts=choose_difficulty()
 print(f"You have {attempts} attempts to guess the number")
 
-guess= int(input("Guess the number:"))
-check_answer(guess, number)
+guess=0
+while guess != number:
+    guess= int(input("Guess the number:"))
+    check_answer(guess, number, attempts)
+
